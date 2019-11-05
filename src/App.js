@@ -7,7 +7,7 @@ function App() {
   const [count, setCount] = useState(5);
   const [show, setShow] = useState(false);
 
-  const [isLoading, fetchedData] = useFetch(
+  const [isLoading, fetchedData, error] = useFetch(
     `http://fake-hotel-api.herokuapp.com/api/hotels?count=${count}`,
     []
   );
@@ -16,9 +16,13 @@ function App() {
 
   const loading = <p>Loading....</p>;
 
+  const noData = <p>Error Loading Data</p>;
+  console.log(error);
   return (
     <div className='container'>
-      {isLoading
+      {error
+        ? noData
+        : isLoading
         ? loading
         : hotels.map(hotel => (
             <div className='box' key={hotel.id}>

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 // import useFetch from './hooks/useFetch';
 import Reviews from './reviews';
+import Rater from 'react-rater';
+import 'react-rater/lib/react-rater.css';
 
 function Hotel({ hotel, images }) {
   const {
@@ -11,7 +13,8 @@ function Hotel({ hotel, images }) {
     description,
     price,
     date_start,
-    date_end
+    date_end,
+    stars
   } = hotel;
 
   const [show, setShow] = useState(false);
@@ -36,21 +39,23 @@ function Hotel({ hotel, images }) {
           <div className='hotel-item__block'>
             <div>
               <h2>{name}</h2>
-              <span>{city}</span> - <span>{country}</span>
+              <span style={{ color: '#537ec5' }}>{city}</span> -{' '}
+              <span>{country}</span>
             </div>
             <div>
-              <h3>Star Rating here</h3>
+              <Rater total={5} rating={stars} interactive={false} />
+              {/* <h3>&#x2605;</h3> */}
             </div>
           </div>
-          <p>{description}</p>
-          <div className='hotel-item__block'>
-            <div>
+          <p className='hotel-item__description'>{description}</p>
+          <div className='hotel-item__bottom'>
+            <div className='hotel-item__reviewbtn'>
               <button onClick={handleReviews} className='button'>
                 {show ? 'Hide Reviews' : 'Show Reviews'}
               </button>
             </div>
-            <div>
-              <p>{price}</p>
+            <div className='hotel-item__details'>
+              <p className='hotel-item__price'>{price} &#8364;</p>
               <span>
                 {getFormat(date_start)} - {getFormat(date_end)}
               </span>

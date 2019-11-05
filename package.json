@@ -16,7 +16,9 @@
     "file-loader": "^4.2.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "style-loader": "^1.0.0"
+    "react-rater": "^5.1.1",
+    "style-loader": "^1.0.0",
+    "uninstall": "0.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",

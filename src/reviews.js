@@ -7,7 +7,7 @@ function Reviews({ id }) {
 
   const [isLoading, fetchedData] = useFetch(
     `http://fake-hotel-api.herokuapp.com/api/reviews?hotel_id=${id}`,
-    []
+    [id]
   );
 
   const reviews = fetchedData ? fetchedData : [];
@@ -24,7 +24,10 @@ function Reviews({ id }) {
               review.length === 0 ? (
                 <li>No Reviews here</li>
               ) : (
-                <li key={index}>{review.comment}</li>
+                <li key={index} className='review-list__item'>
+                  <span>{review.positive == true ? `😀` : `😞`}</span>
+                  <p> {review.comment}</p>
+                </li>
               )
             )}
       </ul>
