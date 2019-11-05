@@ -487,6 +487,10 @@ button {
 .box:hover {
   box-shadow: 2px 2px #ccc;
 }
+.error {
+  color: #d66565;
+  font-size: 1.6em;
+}
 
 .hotel-item {
   display: grid;
@@ -504,16 +508,7 @@ button {
   display: grid;
   grid-template-columns: 2fr 2fr;
   align-items: center;
-  /* justify-items: center; */
   padding: 12px;
-}
-/* .hotel-item__bottom {
-  margin: 2px;
-} */
-
-.hotel-item__reviewbtn {
-  /* position: relative;
-  top: 12px; */
 }
 
 .hotel-item__details {
@@ -545,16 +540,13 @@ button {
   color: #5e5e5e;
 }
 
-.review-list {
-  /* border: 1px solid #000; */
-}
-
 .review-list__item {
   display: flex;
   border-bottom: 1px solid #dfeef0;
   padding: 16px;
   color: #fff;
   background: #35495e;
+  transition: 0.4s all ease-in-out;
 }
 
 .review-list__item:last-child {
@@ -590,7 +582,6 @@ button {
 .button:hover {
   color: #fff;
   border-radius: 50px;
-  /* border-color: #494949; */
   transition: all 0.4s ease-in-out;
 }
 

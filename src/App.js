@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Loader from 'react-loader-spinner';
 import useFetch from './hooks/useFetch';
 import Hotel from './hotel';
-// import Reviews from './reviews';
 
 function App() {
   const [count, setCount] = useState(5);
@@ -14,22 +14,57 @@ function App() {
 
   const hotels = fetchedData ? fetchedData : [];
 
-  const loading = <p>Loading....</p>;
+  const loadHotels = () => {
+    setShow(true);
+  };
 
-  const noData = <p>Error Loading Data</p>;
-  console.log(error);
+  const loading = (
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <Loader
+        type='Bars'
+        color='#35495e'
+        height={50}
+        width={50}
+        timeout={3000} //3 secs
+      />
+    </div>
+  );
+
+  const noData = (
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        position: 'relative',
+        top: '25%'
+      }}
+    >
+      <h2 className='error'>Error Loading Data, Please Reload page</h2>
+    </div>
+  );
+
   return (
     <div className='container'>
-      {error
-        ? noData
-        : isLoading
-        ? loading
-        : hotels.map(hotel => (
+      {show ? (
+        isLoading ? (
+          loading
+        ) : hotels.error ? (
+          noData
+        ) : (
+          hotels.map(hotel => (
             <div className='box' key={hotel.id}>
               {console.log(hotel)}
               <Hotel hotel={hotel} images={hotel.images[0]} />
             </div>
-          ))}
+          ))
+        )
+      ) : (
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <button className='button' onClick={loadHotels}>
+            Load Hotels
+          </button>
+        </div>
+      )}
     </div>
   );
 }
