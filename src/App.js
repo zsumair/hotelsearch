@@ -8,7 +8,7 @@ function App() {
   const [show, setShow] = useState(false);
 
   const [isLoading, fetchedData, error] = useFetch(
-    `http://fake-hotel-api.herokuapp.com/api/hotels?count=${count}`,
+    `https://fake-hotel-api.herokuapp.com/api/hotels?count=${count}`,
     []
   );
 

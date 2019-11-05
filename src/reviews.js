@@ -4,7 +4,7 @@ import useFetch from './hooks/useFetch';
 
 function Reviews({ id }) {
   const [isLoading, fetchedData] = useFetch(
-    `http://fake-hotel-api.herokuapp.com/api/reviews?hotel_id=${id}`,
+    `https://fake-hotel-api.herokuapp.com/api/reviews?hotel_id=${id}`,
     [id]
   );
 
