@@ -6,19 +6,23 @@ function useFetch(url, dependencies) {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch(url)
+    let controller = new AbortController();
+    fetch(url, { signal: controller.signal })
       .then(res => res.json())
       .then(data => {
         setIsLoading(false);
         setFetchedData(data);
       })
       .catch(err => {
+        if (err.name === 'AbortError') {
+          console.log('Fetch Aborted');
+        }
         setIsLoading(false);
         setError(err);
       });
 
     return () => {
-      setFetchedData(null);
+      controller.abort();
     };
   }, dependencies);
 
